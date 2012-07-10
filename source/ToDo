@@ -1,0 +1,13 @@
+Bugs:
+-- Shift, Ctrl, and other modifier keys get captured and thus don't work properly right now
+-- Doesn't read punctuation correctly (e.g. will not convert ";" to anything correctly)
+
+
+
+Limitations: 
+
+-- No translated character can be translated again.  For example, the small-tsu of Japanese.  Ideally, to get "っか", or "っぶ", the sequence would be:
+1  "k"   --> "k"			"b"   --> "b"
+2  "kk"  --> "っk"			"bb"  --> "っb"
+3  "kka" --> "っか"			"bbu" --> "っぶ"
+However, in the second step, we "translate" "bb" to "っb", so even though the second "b" is in english, it would be skipped since it's already translated.  Currently, you have to type "bbbu" and "kkka" to get the same result.

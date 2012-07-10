@@ -1,0 +1,23 @@
+<!-- your choice of jquery. nothing will work without jquery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+conv_dict = { 
+  /* this dictionary decides what strings map to what.  e.g. adding ("a" : "b")
+  	will cause every "a" character to be converted into a "b" */
+};
+
+priority = [ /*  decides which strings get priority over others.  e.g. in ["abc","ab"], 
+				the convertor will not convert "ab" unless "abc" is not possible (e.g. "abd" gets typed) */]
+
+$(document).ready(function () {
+  /* programmatically fill in your dictionary/priority array if you wish */ 
+
+  /* once conv_dict and priority are initialized properly, instantiate a keyboard */
+  keyboard = new lang_keyboard({ priority: priority, conv_dict: convDict });
+
+  /* listen to a text input of your choice */
+  keyboard.bindToInput("text-input-ID");
+
+});
+
+</script>

@@ -1,0 +1,73 @@
+<html>
+ <head>
+  <title>A unit test for lang_keyboard class</title>
+  <script type="text/javascript" src='../jsunit/app/jsUnitCore.js'></script>
+  <script type="text/javascript" src='../implementations/japanese-keyboard.js'></script>
+  <script type="text/javascript" src='../implementations/dvorak-keyboard.js'></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+  <script language='javascript' src='../source/generic-language-keyboard.js'></script>
+ </head>
+ <body>
+  <script language='javascript'>
+
+    function setUp(){
+      dvKeyboard = makeDvorakKeyboard();
+      japKeyboard = makeJapaneseKeyboard();
+    }
+
+    function tearDown() {
+      // clean up
+    }
+
+    function testSkipChars(){
+      dvKeyboard.translated = "abc";
+      assertEquals(3, dvKeyboard.skipChars("abcd"));
+      dvKeyboard.translated = "ab";
+      assertEquals(2, dvKeyboard.skipChars("abcd"));
+    }
+
+    function testConvertToTargetLang(){
+      dvKeyboard.translated = "ab";
+      assertEquals("abe", dvKeyboard.convertToTargetLang("abd"));
+
+      japKeyboard.translated = "さし";
+      assertEquals("さしこ", japKeyboard.convertToTargetLang("さしko"));
+    }
+
+    function testTranslated(){
+      dvKeyboard.translated = "";
+      dvKeyboard.convertToTargetLang("d");
+      assertEquals("e", dvKeyboard.translated);
+
+      dvKeyboard.translated = "abcde";
+      dvKeyboard.convertToTargetLang("abcdef");
+      assertEquals("abcdeu", dvKeyboard.translated);
+
+      japKeyboard.translated = "さし";
+      japKeyboard.convertToTargetLang("さしto");
+      assertEquals("さしと", japKeyboard.translated);
+
+      japKeyboard.translated = "さし";
+      japKeyboard.convertToTargetLang("さしt");
+      assertEquals("さし", japKeyboard.translated);
+
+    }
+
+    function testEraseChar(){
+      assertEquals("", dvKeyboard.eraseChar("b"));
+
+      dvKeyboard.translated = "bab";
+      var res = dvKeyboard.eraseChar("bab");
+      assertEquals("ba", res);
+      assertEquals("ba", dvKeyboard.translated);
+
+      japKeyboard.translated = "さし";
+      var res = japKeyboard.eraseChar("さしt");
+      assertEquals("さし", res);
+      assertEquals("さし", japKeyboard.translated);
+
+    }
+
+  </script>
+ </body>
+</html>

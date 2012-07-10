@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="../source/generic-language-keyboard.js"></script>
+<script type="text/javascript" src="../implementations/japanese-keyboard.js"></script>
+<script type="text/javascript" src="../implementations/dvorak-keyboard.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	dvKeyboard = makeDvorakKeyboard();
+	dvKeyboard.bindToInput("dvorak");
+	japKeyboard = makeJapaneseKeyboard();
+	japKeyboard.bindToInput("japanese");
+});
+</script>
+</head>
+<body>
+<pre>
+Japanese Keyboard: <input type="text" id="japanese" />
+Dvorak Keyboard: <input type="text" id="dvorak" />
+</pre>
+</body>
+</html>
