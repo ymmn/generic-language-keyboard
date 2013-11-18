@@ -2,6 +2,10 @@ This generic-keyboard is meant to minimize the work of making a javascript virtu
 
 Usage: Look at the template and implementations for detailed instructions.
 
+TODO:
+-- highlight changing parts (see http://www.sayjack.com/type/korean/)
+-- make into chrome extension to use in any webpage
+
 
 Limitations: 
 -- No translated character can be translated again.  For example, the small-tsu of Japanese.  Ideally, to get "っか", or "っぶ", the sequence would be:
